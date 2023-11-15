@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Miui XXL</string>
+    <string name="app_name" translatable="false">Mi XXL</string>
     <string name="xposed_description">Self-use chowder</string>
     <string name="tips">Tips</string>
     <string name="not_support">The module is not activated. Please activate the module and try again</string>

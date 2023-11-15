@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = ("Miui_XXL")
+rootProject.name = ("mixxl")
 include(":app", ":blockmiui")

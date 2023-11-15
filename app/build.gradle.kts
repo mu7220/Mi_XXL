@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.yuk.miuiXXL"
+    namespace = "moe.nekoqiqi.mixxl"
     compileSdk = 34
 
     defaultConfig {
@@ -17,7 +17,7 @@ android {
         minSdk = 33
         targetSdk = 34
         versionCode = getVersionCode()
-        versionName = "1.0" + "-" + getVersionName()
+        versionName = "1.0.0" + "-" + getVersionName()
         //noinspection ChromeOsAbiSupport
         ndk.abiFilters += arrayOf("arm64-v8a")
     }
@@ -62,7 +62,7 @@ android {
         }
         applicationVariants.all {
             outputs.all {
-                (this as BaseVariantOutputImpl).outputFileName = "Miui_XXL-$versionName($versionCode)-$name.apk"
+                (this as BaseVariantOutputImpl).outputFileName = "Mi_XXL-$versionName($versionCode)-$name.apk"
             }
         }
     }

@@ -1,0 +1,57 @@
+package moe.nekoqiqi.mixxl.hooks.modules.settings
+
+import android.app.NotificationChannel
+import com.github.kyuubiran.ezxhelper.ClassLoaderProvider
+import com.github.kyuubiran.ezxhelper.ObjectHelper.Companion.objectHelper
+import java.lang.reflect.InvocationHandler
+import java.lang.reflect.Proxy
+import moe.nekoqiqi.mixxl.hooks.modules.BaseHook
+import moe.nekoqiqi.mixxl.utils.KotlinXposedHelper.callMethod
+import moe.nekoqiqi.mixxl.utils.KotlinXposedHelper.findClass
+import moe.nekoqiqi.mixxl.utils.KotlinXposedHelper.hookAfterMethod
+import moe.nekoqiqi.mixxl.utils.KotlinXposedHelper.hookBeforeAllMethods
+import moe.nekoqiqi.mixxl.utils.XSharedPreferences.getBoolean
+
+object NotificationImportance : BaseHook() {
+    override fun init() {
+
+        if (!getBoolean("settings_notification_importance", false)) return
+        val mBaseNotificationSettings = "com.android.settings.notification.BaseNotificationSettings".findClass()
+        val mChannelNotificationSettings = "com.android.settings.notification.ChannelNotificationSettings".findClass()
+        mBaseNotificationSettings.hookBeforeAllMethods("setPrefVisible") {
+            val pref = it.args[0]
+            if (pref != null) {
+                val prefKey = pref.callMethod("getKey") as String
+                if ("importance" == prefKey) it.args[1] = true
+            }
+        }
+        mChannelNotificationSettings.hookAfterMethod("setupChannelDefaultPrefs") {
+            val pref = it.thisObject.callMethod("findPreference", "importance")
+            it.thisObject.objectHelper().setObject("mImportance", pref)
+            val mBackupImportance = it.thisObject.objectHelper().getObjectOrNull("mBackupImportance") as Int
+            if (mBackupImportance > 0) {
+                val index = pref?.callMethod("findSpinnerIndexOfValue", mBackupImportance.toString()) as Int
+                if (index > -1) pref.callMethod("setValueIndex", index)
+                val importanceListenerClass = ("androidx.preference.Preference\$OnPreferenceChangeListener").findClass()
+                val handler = InvocationHandler { _, method, args ->
+                    if (method.name == "onPreferenceChange") {
+                        it.thisObject.objectHelper().setObject("mBackupImportance", (args[1] as String).toInt())
+                        val mChannel = it.thisObject.objectHelper().getObjectOrNull("mChannel") as NotificationChannel
+                        mChannel.importance = (args[1] as String).toInt()
+                        mChannel.callMethod("lockFields", 4)
+                        val mBackend = it.thisObject.objectHelper().getObjectOrNull("mBackend")
+                        val mPkg = it.thisObject.objectHelper().getObjectOrNull("mPkg") as String
+                        val mUid = it.thisObject.objectHelper().getObjectOrNull("mUid") as Int
+                        mBackend?.callMethod("updateChannel", mPkg, mUid, mChannel)
+                        it.thisObject.callMethod("updateDependents", false)
+                    }
+                    true
+                }
+                val mImportanceListener: Any = Proxy.newProxyInstance(ClassLoaderProvider.classLoader, arrayOf(importanceListenerClass), handler)
+                pref.callMethod("setOnPreferenceChangeListener", mImportanceListener)
+            }
+        }
+
+    }
+
+}
