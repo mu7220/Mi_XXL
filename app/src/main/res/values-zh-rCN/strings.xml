@@ -101,8 +101,6 @@
     <string name="thememanager">主题壁纸</string>
     <string name="thememanager_remove_ads">去广告</string>
     <string name="thememanager_remove_ads_summary">猜你喜欢内的广告将显示为空白卡片，其余位置的广告将完全移除</string>
-    <string name="thememanager_fuck_validate_theme">主题破解</string>
-    <string name="thememanager_fuck_validate_theme_summary">允许应用第三方主题并防止恢复\n需同时作用于系统框架并在重启后生效</string>
 
     <string name="systemui">系统界面</string>
     <string name="systemui_statusbar_show_seconds">状态栏时间显秒</string>

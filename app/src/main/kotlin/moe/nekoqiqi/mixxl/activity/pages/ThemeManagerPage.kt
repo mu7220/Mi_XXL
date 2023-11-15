@@ -18,10 +18,6 @@ class ThemeManagerPage : BasePage() {
             TextSummaryV(textId = R.string.thememanager_remove_ads, tipsId = R.string.thememanager_remove_ads_summary),
             SwitchV("thememanager_remove_ads", false)
         )
-        TextSummaryWithSwitch(
-            TextSummaryV(textId = R.string.thememanager_fuck_validate_theme, tipsId = R.string.thememanager_fuck_validate_theme_summary),
-            SwitchV("thememanager_fuck_validate_theme", false)
-        )
     }
 
 }
