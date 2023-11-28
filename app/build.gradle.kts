@@ -18,6 +18,7 @@ android {
         targetSdk = 34
         versionCode = getVersionCode()
         versionName = "1.0.0" + "-" + getVersionName()
+        buildConfigField("String", "BUILD_TIME", "\"${System.currentTimeMillis()}\"")
         //noinspection ChromeOsAbiSupport
         ndk.abiFilters += arrayOf("arm64-v8a")
     }

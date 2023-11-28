@@ -1,8 +1,17 @@
 <resources>
-    <string name="xposed_description">自用大杂烩</string>
+    <!--模块页面/设置-->
+    <string name="xposed_description">MIUI/Xiaomi HyperOS 体验改善模块</string>
     <string name="tips">提示</string>
     <string name="not_support">模块未激活，请激活模块后重试</string>
+
+    <string name="menu">菜单栏</string>
+    <string name="settings_page">模块设置</string>
+    <string name="icon_title">图标设置</string>
+    <string name="backup_title">模块配置</string>
+    <string name="restart_title">作用域相关</string>
+
     <string name="hide_desktop_icon">隐藏桌面图标</string>
+    <string name="icon_show">图标位置</string>
 
     <string name="done">确定</string>
     <string name="cancel">取消</string>
@@ -19,6 +28,10 @@
     <string name="reset_module_finished">重置模块配置成功</string>
     <string name="reset_module_summary">确定要重置模块配置么？</string>
 
+    <string name="about_page">关于模块</string>
+    <string name="developer_title">开发者</string>
+    <string name="developer_desc">一只只会吹水的猫娘，是弱鸡，啥也不会（🐱</string>
+
     <string name="def">默认：</string>
     <string name="current">当前：</string>
     <string name="scope">范围：</string>
@@ -26,10 +39,14 @@
     <string name="reboot_system">重启系统</string>
     <string name="reboot_system_summary">确定要重启系统么？</string>
 
-    <string name="restart_scope">重启作用域</string>
+    <string name="restart_all_scope">重启全部作用域</string>
     <string name="restart_scope_summary">确定要重启全部作用域么？</string>
     <string name="restart_scope_finished">作用域重启完成</string>
-
+    <!--Array 的一点东西-->
+    <string name="array_close">关闭</string>
+    <string name="array_top">顶部展示</string>
+    <string name="array_bottom">底部展示</string>
+    <!--作用域-->
     <string name="android">系统框架</string>
     <string name="android_reboot">修改需要重启系统后生效</string>
     <string name="android_corepacth">核心破解</string>

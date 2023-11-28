@@ -1,4 +1,4 @@
-package moe.nekoqiqi.mixxl.activity.pages
+package moe.nekoqiqi.mixxl.activity.pages.app
 
 import cn.fkj233.ui.activity.annotation.BMPage
 import cn.fkj233.ui.activity.data.BasePage

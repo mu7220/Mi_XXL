@@ -1,9 +1,19 @@
 <resources>
+    <!--不需要翻译的东西-->
     <string name="app_name" translatable="false">Mi XXL</string>
-    <string name="xposed_description">Self-use chowder</string>
+    <!--模块页面/设置-->
+    <string name="xposed_description">MIUI/Xiaomi HyperOS experience improvement module</string>
     <string name="tips">Tips</string>
     <string name="not_support">The module is not activated. Please activate the module and try again</string>
+
+    <string name="menu">Menu</string>
+    <string name="settings_page">Module Settings</string>
+    <string name="icon_title">IconSet</string>
+    <string name="backup_title">Module Config</string>
+    <string name="restart_title">Scope Related</string>
+
     <string name="hide_desktop_icon">Hide desktop icon</string>
+    <string name="icon_show">图标位置</string>
 
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
@@ -24,14 +34,21 @@
     <string name="current">Current: </string>
     <string name="scope">Scope: </string>
 
-
     <string name="reboot_system">Reboot System</string>
     <string name="reboot_system_summary">Are you sure you want to restart your system?</string>
 
-    <string name="restart_scope">Restart Scope</string>
+    <string name="restart_all_scope">Restart All Scope</string>
     <string name="restart_scope_finished">Scope application restart completed</string>
     <string name="restart_scope_summary">Are you sure to restart the scope application?</string>
 
+    <string name="about_page">About module</string>
+    <string name="developer_title">Developer</string>
+    <string name="developer_desc">A cat lady who only knows how to make small talk is a weakling who can’t do anything (🐱</string>
+    <!--Array 的一点东西-->
+    <string name="array_close">Close</string>
+    <string name="array_top">Top Display</string>
+    <string name="array_bottom">Bottom Display</string>
+    <!--模块作用域-->
     <string name="android">Framework</string>
     <string name="android_reboot">Requires reboot system to take effect</string>
     <string name="android_corepacth">Core cracking</string>

@@ -15,7 +15,7 @@ import kotlin.math.abs
 
 object AppUtils {
 
-    fun perfFileName() = "Mi_xxl_Config"
+    fun perfFileName() = "Mi_XXL_Config"
 
     fun prefs() = XSharedPreferences(BuildConfig.APPLICATION_ID, perfFileName())
 

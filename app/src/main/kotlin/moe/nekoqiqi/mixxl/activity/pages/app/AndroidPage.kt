@@ -1,4 +1,4 @@
-package moe.nekoqiqi.mixxl.activity.pages
+package moe.nekoqiqi.mixxl.activity.pages.app
 
 import cn.fkj233.ui.activity.MIUIActivity.Companion.safeSP
 import cn.fkj233.ui.activity.annotation.BMPage

@@ -50,20 +50,32 @@ import moe.nekoqiqi.mixxl.hooks.modules.thememanager.RemoveThemeManagerAds
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.callbacks.XC_LoadPackage
+import moe.nekoqiqi.mixxl.hooks.modules.settings.ModuleIcon
+import moe.nekoqiqi.mixxl.utils.helper.DexKit.closeDexKit
+import moe.nekoqiqi.mixxl.utils.helper.DexKit.initDexKit
 
-private const val TAG = "Miui XXL"
+private const val TAG = "Mi XXL"
 private val PACKAGE_NAME_HOOKED = setOf(
     "android",
     "com.android.settings",
     "com.android.systemui",
     "com.android.thememanager",
-    "com.miui.gallery",
     "com.miui.guardprovider",
     "com.miui.home",
     "com.miui.mediaeditor",
     "com.miui.packageinstaller",
     "com.miui.personalassistant",
     "com.miui.powerkeeper",
+    "com.miui.screenshot",
+    "com.miui.securitycenter"
+)
+private val PACKAGE_NAME_DEXKIT_HOOKED = setOf(
+    "com.android.thememanager",
+    "com.miui.guardprovider",
+    "com.miui.home",
+    "com.miui.mediaeditor",
+    "com.miui.packageinstaller",
+    "com.miui.personalassistant",
     "com.miui.screenshot",
     "com.miui.securitycenter"
 )
@@ -81,6 +93,9 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
             EzXHelper.initHandleLoadPackage(lpparam)
             EzXHelper.setLogTag(TAG)
             EzXHelper.setToastTag(TAG)
+            // Load DexKit
+            if (lpparam.packageName in PACKAGE_NAME_DEXKIT_HOOKED)
+                initDexKit(lpparam)
             // Init hooks
             when (lpparam.packageName) {
                 "android" -> {
@@ -95,6 +110,7 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
                 "com.android.settings" -> {
                     initHooks(
                         NotificationImportance,
+                        ModuleIcon,
                     )
                 }
 
@@ -116,12 +132,6 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
                 "com.android.thememanager" -> {
                     initHooks(
                         RemoveThemeManagerAds,
-                    )
-                }
-
-                "com.miui.gallery" -> {
-                    initHooks(
-                        RemoveCropRestriction,
                     )
                 }
 
@@ -190,9 +200,8 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
                         ShowBatteryTemperature,
                     )
                 }
-
-                else -> return
             }
+            closeDexKit()
         }
     }
 

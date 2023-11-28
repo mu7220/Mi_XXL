@@ -1,4 +1,4 @@
-package moe.nekoqiqi.mixxl.activity.pages
+package moe.nekoqiqi.mixxl.activity.pages.app
 
 import android.view.View
 import cn.fkj233.ui.activity.MIUIActivity.Companion.safeSP
